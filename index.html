@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yanisa Intharawicha — Portfolio</title>
+
+    <!-- ฟอนต์จาก Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS (ใช้ผ่าน CDN ทำให้ไม่ต้อง build อะไรเพิ่ม) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              violet: { DEFAULT: "#7C5CFC", soft: "#A48CFF", deep: "#5B3FE0" },
+              blue: { DEFAULT: "#4C6FFF", soft: "#7C93FF" },
+              cyan: "#6EE7F9",
+              mist: "#9AA0C3",
+              paper: "#F1F1F8",
+              panelSolid: "#131529",
+            },
+            fontFamily: {
+              display: ['"Space Grotesk"', "sans-serif"],
+              body: ['"Inter"', "sans-serif"],
+              mono: ['"IBM Plex Mono"', "monospace"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- CSS ของเราเอง (แยกไฟล์ต่างหาก) -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="font-body antialiased bg-ink text-paper">
+    <!-- ========== NAV ========== -->
+    <header id="site-nav" class="fixed top-0 inset-x-0 z-50 transition-colors">
+      <div
+        class="max-w-5xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between"
+      >
+        <a
+          href="#top"
+          class="font-display font-semibold tracking-tight text-paper"
+          >Yanisa<span class="text-violet">.</span>dev</a
+        >
+        <nav class="hidden sm:flex items-center gap-7 text-sm text-mist">
+          <a href="#about" class="link-underline hover:text-paper" data-i18n="nav.about">แนะนำตัว</a>
+          <a href="#featured" class="link-underline hover:text-paper"
+            data-i18n="nav.featured">โปรเจกต์เด่น</a
+          >
+          <a href="#projects" class="link-underline hover:text-paper"
+            data-i18n="nav.projects">โปรเจกต์อื่น</a
+          >
+          <a href="#stack" class="link-underline hover:text-paper"
+            data-i18n="nav.stack">เว็บนี้ทำจากอะไร</a
+          >
+        </nav>
+        <a
+          href="#contact"
+          class="text-sm font-medium px-4 py-2 rounded-full bg-violet hover:bg-violet-deep transition-colors"
+          data-i18n="nav.contact">ติดต่อ</a
+        >
+        <button id="language-toggle" type="button" class="ml-3 text-sm font-medium px-3 py-2 rounded-full border border-white/15 hover:border-violet/60 transition-colors" aria-label="Switch language">
+          English
+        </button>
+      </div>
+    </header>
+
+    <!-- ========== HERO ========== -->
+    <section
+      id="top"
+      class="relative min-h-screen flex items-center overflow-hidden bg-grid"
+    >
+      <div
+        class="orb orb-a w-[520px] h-[520px] bg-violet -top-40 -left-40"
+      ></div>
+      <div
+        class="orb orb-b w-[420px] h-[420px] bg-blue top-1/3 -right-32"
+      ></div>
+
+      <div
+        class="relative max-w-5xl mx-auto px-6 md:px-10 pt-28 pb-20 grid md:grid-cols-[1fr_auto] gap-12 items-center"
+      >
+        <div>
+          <p class="font-mono text-sm text-cyan mb-6" data-i18n="hero.eyebrow">
+            Computer Science student focused on Full-Stack Development &amp; AI
+          </p>
+
+          <h1
+            class="font-display font-semibold text-4xl sm:text-5xl md:text-6xl leading-[1.08] max-w-3xl"
+          >
+            Building ideas into working software
+          </h1>
+
+          <p class="mt-6 max-w-xl text-mist text-lg leading-relaxed" data-i18n="hero.description">
+            ฉัน <span class="text-paper font-medium">ญาณิศา อินทรวิชา</span>
+            นักศึกษาวิทยาการคอมพิวเตอร์ ชั้นปีที่ 4 สนใจด้าน Full-Stack
+            Development และ AI กำลังมองหาโอกาสสหกิจศึกษา / Junior Developer
+            เพื่อพัฒนาทักษะจากการทำงานจริง
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a
+              href="Pdf/cv.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-5 py-2.5 rounded-full bg-violet hover:bg-violet-deep transition-colors text-sm font-medium"
+              data-i18n="hero.cv">ดู CV</a
+            >
+            <a
+              href="#about"
+              class="px-5 py-2.5 rounded-full border border-white/15 hover:border-violet/60 transition-colors text-sm font-medium text-paper"
+              data-i18n="hero.about">แนะนำตัว ↓</a
+            >
+          </div>
+        </div>
+
+        <!-- ช่องใส่รูปหน้าตัวเอง: เปลี่ยน src="รูปของคุณ.jpg" เป็นชื่อไฟล์รูปจริง แล้ววางไฟล์รูปไว้โฟลเดอร์เดียวกับ index.html -->
+        <div class="justify-self-center md:justify-self-end">
+          <div
+            class="w-44 h-44 sm:w-56 sm:h-56 rounded-full overflow-hidden border-2 border-violet/40 bg-panelSolid flex items-center justify-center"
+          >
+            <img
+              src="Photos/profile.jpg"
+              alt="รูปโปรไฟล์"
+              data-i18n-alt="profile.alt"
+              class="w-full h-full object-cover object-[center_20%]"
+              onerror="
+                this.style.display = 'none';
+                this.nextElementSibling.style.display = 'flex';
+              "
+            />
+
+            <div
+              style="display: none"
+              class="w-full h-full flex-col items-center justify-center text-mist font-mono text-xs text-center px-4 gap-2"
+            >
+              <span data-i18n="image.profile">ใส่รูปโปรไฟล์</span>
+              <span class="text-mist/60" data-i18n="image.fix">แก้ src ใน index.html</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== แนะนำตัว (ABOUT ME) ========== -->
+    <section
+      id="about"
+      class="relative max-w-5xl mx-auto px-6 md:px-10 py-24 md:py-32"
+    >
+      <div class="grid md:grid-cols-[auto_1fr] gap-10 md:gap-16 items-start">
+        <!-- ช่องใส่รูปหน้าตัวเอง จุดที่สอง (รูปใหญ่กว่าใน hero) -->
+        <div class="row-reveal justify-self-center md:justify-self-start">
+          <div
+            class="w-56 h-64 sm:w-64 sm:h-72 rounded-2xl overflow-hidden border border-white/10 bg-panelSolid flex items-center justify-center"
+          >
+            <img
+              src="Photos/profile.jpg"
+              alt="รูปแนะนำตัว"
+              data-i18n-alt="profile.aboutAlt"
+              class="w-full h-full object-cover"
+              onerror="
+                this.style.display = 'none';
+                this.nextElementSibling.style.display = 'flex';
+              "
+            />
+            <div
+              style="display: none"
+              class="w-full h-full flex-col items-center justify-center text-mist font-mono text-xs text-center px-4 gap-2"
+            >
+              <span>ใส่รูปแนะนำตัว</span>
+              <span class="text-mist/60">แก้ src ใน index.html</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row-reveal">
+          <p class="font-mono text-sm text-cyan mb-4">// about me</p>
+          <h2 class="font-display text-3xl sm:text-4xl font-semibold mb-6">
+            ญาณิศา อินทรวิชา
+          </h2>
+
+          <div class="space-y-5 text-mist leading-relaxed max-w-xl">
+            <p>
+              กำลังศึกษาอยู่ชั้นปีที่ 4 คณะเทคโนโลยีสารสนเทศ
+              สาขาวิทยาการคอมพิวเตอร์และพัฒนาซอฟต์แวร์ มหาวิทยาลัยศรีปทุม ·
+              <span class="text-paper">GPA 3.05</span>
+            </p>
+            <p>
+              มีประสบการณ์พัฒนาโปรเจกต์ทั้ง
+              <span class="text-paper"
+                >Web Application, Backend และ AI/RAG</span
+              >
+              ตั้งแต่การออกแบบระบบไปจนถึงการ Deploy ใช้งานจริง
+            </p>
+            <p>
+              Tech Stack ที่ใช้งาน ได้แก่
+              <span class="text-paper"
+                >React, Node.js, ASP.NET MVC, C#, JavaScript, Python, MySQL,
+                MongoDB, SQLite และ Docker</span
+              >
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mt-8">
+            <span
+              class="font-mono text-xs px-3 py-1.5 rounded-full border border-white/10 text-mist"
+              >React</span
+            >
+            <span
+              class="font-mono text-xs px-3 py-1.5 rounded-full border border-white/10 text-mist"
+              >Node.js</span
+            >
+            <span
+              class="font-mono text-xs px-3 py-1.5 rounded-full border border-white/10 text-mist"
+              >ASP.NET MVC</span
+            >
+            <span
+              class="font-mono text-xs px-3 py-1.5 rounded-full border border-white/10 text-mist"
+              >C#</span
+            >
+            <span
+              class="font-mono text-xs px-3 py-1.5 rounded-full border border-white/10 text-mist"
+              >Python</span
+            >
+            <span
+              class="font-mono text-xs px-3 py-1.5 rounded-full border border-white/10 text-mist"
+              >MySQL</span
+            >
+            <span
+              class="font-mono text-xs px-3 py-1.5 rounded-full border border-white/10 text-mist"
+              >MongoDB</span
+            >
+            <span
+              class="font-mono text-xs px-3 py-1.5 rounded-full border border-white/10 text-mist"
+              >SQLite</span
+            >
+            <span
+              class="font-mono text-xs px-3 py-1.5 rounded-full border border-white/10 text-mist"
+              >Docker</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FEATURED PROJECT ========== -->
+    <section
+      id="featured"
+      class="max-w-5xl mx-auto px-6 md:px-10 py-24 md:py-32"
+    >
+      <div class="flex items-end justify-between flex-wrap gap-4 mb-10">
+        <h2 class="font-display text-3xl sm:text-4xl font-semibold">
+          โปรเจกต์เด่น
+        </h2>
+        <span class="font-mono text-sm text-mist">Featured Project</span>
+      </div>
+
+      <div
+        class="rounded-2xl border border-white/10 bg-panelSolid/60 overflow-hidden"
+      >
+        <div class="p-6 sm:p-10 border-b border-white/10">
+          <p class="font-mono text-xs text-cyan mb-3">AI · RAG · HEALTHCARE</p>
+          <h3 class="font-display text-2xl sm:text-3xl font-medium">
+            Silver Life Benefit
+          </h3>
+          <p class="mt-2 text-mist">
+            AI Assistant for Healthcare &amp; Welfare Information
+          </p>
+        </div>
+
+        <!-- ช่องใส่ภาพหน้าจอโปรเจกต์เด่น: แก้ src เป็นไฟล์ screenshot จริง -->
+        <div class="border-b border-white/10">
+          <div
+            class="w-full aspect-video bg-panelSolid flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src="Photos/Chatbot.png"
+              alt="ภาพหน้าจอระบบ Silver Life Benefit"
+              data-i18n-alt="featured.imageAlt"
+              class="w-full h-full object-cover"
+              onerror="
+                this.style.display = 'none';
+                this.nextElementSibling.style.display = 'flex';
+              "
+            />
+            <div
+              style="display: none"
+              class="w-full h-full flex-col items-center justify-center text-mist font-mono text-xs gap-2"
+            >
+              <span>ใส่ภาพหน้าจอโปรเจกต์ตรงนี้</span>
+              <span class="text-mist/60">screenshot-silver-life.jpg</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2">
+          <div class="p-6 sm:p-10 sm:border-r border-white/10">
+            <p class="font-mono text-xs text-cyan mb-3">PROBLEM</p>
+            <p class="text-paper/90 leading-relaxed">
+              ข้อมูลสิทธิด้านสุขภาพและสวัสดิการมีรายละเอียดจำนวนมาก
+              ทำให้ผู้ใช้งาน โดยเฉพาะผู้สูงอายุ
+              เข้าถึงและทำความเข้าใจข้อมูลได้ยาก
+            </p>
+          </div>
+          <div class="p-6 sm:p-10 border-t sm:border-t-0 border-white/10">
+            <p class="font-mono text-xs text-cyan mb-3">SOLUTION</p>
+            <p class="text-paper/90 leading-relaxed">
+              พัฒนา AI Assistant ด้วย
+              <span class="text-paper"
+                >Retrieval-Augmented Generation (RAG)</span
+              >
+              เพื่อค้นหาและตอบคำถามจากข้อมูลสิทธิและสวัสดิการที่เกี่ยวข้อง
+            </p>
+          </div>
+          <div class="p-6 sm:p-10 sm:border-r border-t border-white/10">
+            <p class="font-mono text-xs text-cyan mb-3">MY ROLE</p>
+            <p class="text-paper/90 leading-relaxed">
+              ออกแบบระบบ RAG จัดการข้อมูลและฐานข้อมูล
+              รวมถึงพัฒนาและเชื่อมต่อส่วนต่างๆ ของระบบ AI
+            </p>
+          </div>
+          <div class="p-6 sm:p-10 border-t border-white/10">
+            <p class="font-mono text-xs text-cyan mb-3">TECH</p>
+            <p class="text-paper/90 leading-relaxed">
+              Python · RAG · Sentence Transformers · ChromaDB · React
+            </p>
+          </div>
+          <div class="p-6 sm:p-10 sm:border-r border-t border-white/10">
+            <p class="font-mono text-xs text-cyan mb-3">AI PIPELINE</p>
+            <p class="text-paper/90 leading-relaxed">
+              Document → Embedding → Vector Database → Retrieval → AI Response
+            </p>
+          </div>
+          <div class="p-6 sm:p-10 border-t border-white/10">
+            <p class="font-mono text-xs text-cyan mb-3">GOAL</p>
+            <p class="text-paper/90 leading-relaxed">
+              ช่วยให้ผู้ใช้งานค้นหาและทำความเข้าใจข้อมูลด้านสุขภาพและสิทธิประโยชน์ได้ง่ายขึ้นผ่าน
+              AI
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="p-6 sm:p-10 flex flex-wrap gap-3 border-t border-white/10 bg-white/[0.02]"
+        >
+          <!-- <a
+            href="#"
+            class="px-5 py-2.5 rounded-full bg-violet hover:bg-violet-deep transition-colors text-sm font-medium"
+            >ดู Demo</a
+          > -->
+          <a
+            href="#"
+            class="px-5 py-2.5 rounded-full border border-white/15 hover:border-violet/60 transition-colors text-sm font-medium"
+            >ดูโค้ดบน GitHub</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== OTHER PROJECTS ========== -->
+    <section
+      id="projects"
+      class="max-w-5xl mx-auto px-6 md:px-10 py-24 md:py-32"
+    >
+      <div class="flex items-end justify-between flex-wrap gap-4 mb-10">
+        <h2 class="font-display text-3xl sm:text-4xl font-semibold">
+          โปรเจกต์อื่น ๆ
+        </h2>
+        
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- PROJECT: MyUsafe -->
+        <div
+          class="card-hover rounded-2xl border border-white/10 bg-panelSolid/60 overflow-hidden flex flex-col"
+        >
+          <div
+            class="w-full aspect-video bg-panelSolid flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src="Photos/MyUsafe.png"
+              alt="ภาพหน้าจอระบบ MyUsafe"
+              data-i18n-alt="projects.myusafeAlt"
+              class="w-full h-full object-cover"
+              onerror="
+                this.style.display = 'none';
+                this.nextElementSibling.style.display = 'flex';
+              "
+            />
+            <div
+              style="display: none"
+              class="w-full h-full flex-col items-center justify-center text-mist font-mono text-xs gap-1"
+            >
+              <span>ใส่ภาพหน้าจอตรงนี้</span>
+              <span class="text-mist/60">screenshot-myusafe.jpg</span>
+            </div>
+          </div>
+          <div class="p-6 flex flex-col flex-1">
+            <p class="font-mono text-xs text-mist mb-3">Full-Stack</p>
+            <h3 class="font-display text-lg font-medium mb-3">MyUsafe</h3>
+            <p class="text-mist text-sm leading-relaxed flex-1">
+              ระบบรับเรื่องร้องเรียนออนไลน์สำหรับจัดการข้อมูลและติดตามสถานะคำร้อง
+              พร้อม Backend และฐานข้อมูลสำหรับจัดการข้อมูลผู้ใช้งาน
+            </p>
+            <div class="flex flex-wrap gap-2 mt-5 mb-6">
+              <span
+                class="font-mono text-xs px-2.5 py-1 rounded-full border border-white/10 text-mist"
+                >React</span
+              >
+              <span
+                class="font-mono text-xs px-2.5 py-1 rounded-full border border-white/10 text-mist"
+                >Vite</span
+              >
+              <span
+                class="font-mono text-xs px-2.5 py-1 rounded-full border border-white/10 text-mist"
+                >Express</span
+              >
+              <span
+                class="font-mono text-xs px-2.5 py-1 rounded-full border border-white/10 text-mist"
+                >MongoDB</span
+              >
+            </div>
+            <div class="flex gap-5 text-sm">
+              <a
+                href="https://github.com/InkSpuDek66/MyUsafe-ReportProject"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="link-underline text-violet-soft"
+              >
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECT: Restaurant Management System
+        <div
+          class="card-hover rounded-2xl border border-white/10 bg-panelSolid/60 overflow-hidden flex flex-col"
+        >
+          <div
+            class="w-full aspect-video bg-panelSolid flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src="screenshot-restaurant.jpg"
+              alt="ภาพหน้าจอระบบจัดการร้านอาหาร"
+              class="w-full h-full object-cover"
+              onerror="
+                this.style.display = 'none';
+                this.nextElementSibling.style.display = 'flex';
+              "
+            />
+            <div
+              style="display: none"
+              class="w-full h-full flex-col items-center justify-center text-mist font-mono text-xs gap-1"
+            >
+              <span>ใส่ภาพหน้าจอตรงนี้</span>
+              <span class="text-mist/60">screenshot-restaurant.jpg</span>
+            </div>
+          </div>
+          <div class="p-6 flex flex-col flex-1">
+            <p class="font-mono text-xs text-mist mb-3">Full-Stack</p>
+            <h3 class="font-display text-lg font-medium mb-3">
+              Restaurant Management System
+            </h3>
+            <p class="text-mist text-sm leading-relaxed flex-1">
+              เว็บแอปสำหรับจัดการข้อมูลร้านอาหาร พัฒนาเชื่อมต่อระหว่าง Frontend,
+              Backend และฐานข้อมูล
+            </p>
+            <div class="flex flex-wrap gap-2 mt-5 mb-6">
+              <span
+                class="font-mono text-xs px-2.5 py-1 rounded-full border border-white/10 text-mist"
+                >React</span
+              >
+              <span
+                class="font-mono text-xs px-2.5 py-1 rounded-full border border-white/10 text-mist"
+                >Node.js</span
+              >
+              <span
+                class="font-mono text-xs px-2.5 py-1 rounded-full border border-white/10 text-mist"
+                >Express</span
+              >
+              <span
+                class="font-mono text-xs px-2.5 py-1 rounded-full border border-white/10 text-mist"
+                >SQLite</span
+              >
+            </div>
+            <div class="flex gap-5 text-sm">
+               <a href="#" class="link-underline text-violet-soft">Demo</a> -->
+              <!-- <a href="#" class="link-underline text-violet-soft">GitHub</a>
+            </div>
+          </div>
+        </div>  -->
+
+        <!-- PROJECT: FastTour -->
+        <div
+          class="card-hover rounded-2xl border border-white/10 bg-panelSolid/60 overflow-hidden flex flex-col"
+        >
+          <div
+            class="w-full aspect-video bg-panelSolid flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src="Photos/fasttour.png"
+              alt="ภาพหน้าจอระบบ FastTour"
+              data-i18n-alt="projects.fasttourAlt"
+              class="w-full h-full object-cover"
+              onerror="
+                this.style.display = 'none';
+                this.nextElementSibling.style.display = 'flex';
+              "
+            />
+            <div
+              style="display: none"
+              class="w-full h-full flex-col items-center justify-center text-mist font-mono text-xs gap-1"
+            >
+              <span>ใส่ภาพหน้าจอตรงนี้</span>
+              <span class="text-mist/60">screenshot-fasttour.jpg</span>
+            </div>
+          </div>
+          <div class="p-6 flex flex-col flex-1">
+            <p class="font-mono text-xs text-mist mb-3">Web Application</p>
+            <h3 class="font-display text-lg font-medium mb-3">FastTour</h3>
+            <p class="text-mist text-sm leading-relaxed flex-1">
+              ระบบจองทัวร์ออนไลน์ พัฒนาด้วย ASP.NET MVC
+              พร้อมระบบจัดการข้อมูลและการจองผ่านฐานข้อมูล
+            </p>
+            <div class="flex flex-wrap gap-2 mt-5 mb-6">
+              <span
+                class="font-mono text-xs px-2.5 py-1 rounded-full border border-white/10 text-mist"
+                >C#</span
+              >
+              <span
+                class="font-mono text-xs px-2.5 py-1 rounded-full border border-white/10 text-mist"
+                >ASP.NET MVC</span
+              >
+              <span
+                class="font-mono text-xs px-2.5 py-1 rounded-full border border-white/10 text-mist"
+                >SQL</span
+              >
+            </div>
+            <div class="flex gap-5 text-sm">
+              <a
+                href="https://github.com/yanisa1111/Fasttour"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="link-underline text-violet-soft"
+              >
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ABOUT THIS SITE ========== -->
+    <section id="stack" class="max-w-5xl mx-auto px-6 md:px-10 py-24 md:py-32">
+      <div class="mb-10 max-w-xl">
+        <h2 class="font-display text-3xl sm:text-4xl font-semibold">
+          เว็บนี้คืออะไร
+        </h2>
+        <p class="mt-3 text-mist">
+          หน้าเว็บหน้าเดียวที่ออกแบบให้คนดู Portfolio
+          อ่านจบและเข้าใจตัวคุณได้อย่างรวดเร็ว เน้นให้ข้อมูลสำคัญขึ้นก่อน
+          อ่านง่ายทั้งบนมือถือและคอมพิวเตอร์
+        </p>
+      </div>
+
+      <div
+        class="rounded-2xl border border-white/10 bg-panelSolid/60 overflow-hidden font-mono text-sm"
+      >
+        <div
+          class="px-6 py-3 border-b border-white/10 text-mist flex items-center gap-2"
+        >
+          <span class="w-2.5 h-2.5 rounded-full bg-white/20"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-white/20"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-white/20"></span>
+          <span class="ml-2">README.md</span>
+        </div>
+        <div class="p-6 sm:p-8 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:gap-4">
+            <span class="text-cyan shrink-0 w-28">files</span
+            ><span class="text-paper/80"
+              >index.html (โครงหน้า) · style.css (ดีไซน์/แอนิเมชัน) · script.js
+              (การโต้ตอบ)</span
+            >
+          </div>
+          <div class="flex flex-col sm:flex-row sm:gap-4">
+            <span class="text-cyan shrink-0 w-28">styling</span
+            ><span class="text-paper/80"
+              >Tailwind CSS ผ่าน CDN + CSS ของเราเองใน style.css</span
+            >
+          </div>
+          <div class="flex flex-col sm:flex-row sm:gap-4">
+            <span class="text-cyan shrink-0 w-28">layout</span
+            ><span class="text-paper/80"
+              >Single-page, responsive ตั้งแต่ 360px ถึงจอเดสก์ท็อป</span
+            >
+          </div>
+          <div class="flex flex-col sm:flex-row sm:gap-4">
+            <span class="text-cyan shrink-0 w-28">motion</span
+            ><span class="text-paper/80"
+              >Scroll-reveal ด้วย IntersectionObserver ใน script.js เคารพ
+              prefers-reduced-motion</span
+            >
+          </div>
+          <div class="flex flex-col sm:flex-row sm:gap-4">
+            <span class="text-cyan shrink-0 w-28">sections</span
+            ><span class="text-paper/80"
+              >Hero · แนะนำตัว · Featured Project · Other Projects ·
+              Contact</span
+            >
+          </div>
+          <div class="flex flex-col sm:flex-row sm:gap-4">
+            <span class="text-cyan shrink-0 w-28">font</span
+            ><span class="text-paper/80"
+              >Space Grotesk (หัวข้อ) + Inter (เนื้อหา) + IBM Plex Mono
+              (โค้ด/label)</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section
+      id="contact"
+      class="relative max-w-5xl mx-auto px-6 md:px-10 py-24 md:py-32"
+    >
+      <div
+        class="rounded-2xl border border-white/10 bg-gradient-to-br from-violet/15 via-panelSolid/60 to-blue/10 p-10 sm:p-14 text-center"
+      >
+        <h2 class="font-display text-3xl sm:text-4xl font-semibold mb-4">
+          คุยกันได้เลย
+        </h2>
+        <p class="text-mist max-w-md mx-auto mb-10">
+          เปิดรับตำแหน่งสหกิจศึกษา / Junior Full-Stack Developer
+          พร้อมเริ่มงานและเรียนรู้เพิ่มเติมทันที
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="mailto:Yanisa.int@spumail.net"
+            class="px-6 py-3 rounded-full bg-violet hover:bg-violet-deep transition-colors font-medium"
+            >Yanisa.int@spumail.net</a
+          >
+          <a
+            href="Pdf/cv.pdf" target="_blank" rel="noopener noreferrer"
+            class="px-6 py-3 rounded-full border border-white/15 hover:border-violet/60 transition-colors font-medium"
+            >CV</a
+          >
+          <a
+            href="https://github.com/yanisa1111"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 rounded-full border border-white/15 hover:border-violet/60 transition-colors font-medium"
+            >GitHub</a
+          >
+          <a
+            href="https://www.linkedin.com/in/yanisa-intharawicha-a77a32390/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 rounded-full border border-white/15 hover:border-violet/60 transition-colors font-medium"
+            >LinkedIn</a
+          >
+        </div>
+      </div>
+      <p class="text-center text-mist/60 text-sm mt-10 font-mono">
+        HTML + CSS + JS (Tailwind CDN)
+      </p>
+    </section>
+
+    <!-- JS ของเราเอง (แยกไฟล์ต่างหาก) -->
+    <script src="script.js"></script>
+  </body>
+</html>

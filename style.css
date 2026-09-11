@@ -1,0 +1,105 @@
+/* ============================================
+   style.css
+   CSS ส่วนที่ Tailwind ทำไม่ได้ตรงๆ:
+   สี background หลัก, keyframe animation,
+   เอฟเฟกต์ scroll-reveal, ลูกแก้วเรืองแสง ฯลฯ
+   ============================================ */
+
+:root{
+  --grid-line: rgba(154,160,195,0.08);
+}
+
+html{
+  scroll-behavior: smooth; /* กดลิงก์ในเมนูแล้วเลื่อนแบบนุ่มๆ */
+}
+
+body{
+  background: #0A0B14; /* Tailwind ไม่มีสีนี้ตรงๆ เลยประกาศเอง (คลาส bg-ink ใน HTML) */
+}
+
+.bg-ink{ background:#0A0B14; }
+
+::selection{
+  background:#7C5CFC;
+  color:#0A0B14;
+}
+
+/* เส้นตารางจางๆ ด้านหลัง hero ให้ความรู้สึกเหมือนหน้าจอ dev tool */
+.bg-grid{
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* ลูกแก้วเรืองแสงลอยเบาๆ หลัง hero */
+.orb{
+  position:absolute;
+  border-radius:9999px;
+  filter: blur(90px);
+  opacity:.55;
+  pointer-events:none;
+}
+.orb-a{ animation: float-a 16s ease-in-out infinite; }
+.orb-b{ animation: float-b 20s ease-in-out infinite; }
+
+@keyframes float-a{
+  0%,100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(30px,-40px) scale(1.08); }
+}
+@keyframes float-b{
+  0%,100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(-40px,30px) scale(1.05); }
+}
+
+/* คนที่ตั้งค่า "ลดการเคลื่อนไหว" ในเครื่อง จะไม่เห็นแอนิเมชันลอย */
+@media (prefers-reduced-motion: reduce){
+  .orb-a, .orb-b{ animation: none; }
+}
+
+/* แถวคำถามใน 60-Second Test: เริ่มจากโปร่งใส+เลื่อนลงนิดหน่อย
+   แล้ว script.js จะเติมคลาส is-visible ตอนเลื่อนมาถึง */
+.row-reveal{
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.row-reveal.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce){
+  .row-reveal{ opacity:1; transform:none; transition:none; }
+}
+
+/* ขีดเส้นใต้ลิงก์แบบค่อยๆ กาง เวลา hover */
+.link-underline{
+  background-image: linear-gradient(#A48CFF,#A48CFF);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size .25s ease;
+}
+.link-underline:hover{ background-size: 100% 1px; }
+
+/* การ์ดโปรเจกต์ยกตัวขึ้นนิดหน่อยตอน hover */
+.card-hover{
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.card-hover:hover{
+  transform: translateY(-4px);
+  border-color: rgba(124,92,252,0.55);
+  box-shadow: 0 20px 60px -20px rgba(124,92,252,0.35);
+}
+
+/* เมนูบนสุด: เบลอพื้นหลังตอนเลื่อนหน้าจอลง (คลาสนี้ script.js เป็นคนเติม/เอาออก) */
+#site-nav.nav-scrolled{
+  backdrop-filter: blur(14px);
+  background: rgba(10,11,20,0.72);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* แถบเลื่อนหน้าเว็บ ให้เข้ากับธีมสีเข้ม */
+::-webkit-scrollbar{ width:10px; }
+::-webkit-scrollbar-track{ background:#0A0B14; }
+::-webkit-scrollbar-thumb{ background:#2A2C46; border-radius:8px; }
