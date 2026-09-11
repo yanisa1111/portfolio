@@ -183,7 +183,7 @@ const textTargets = {
   "featured.solution": "#featured .grid > div:nth-child(2) > p:last-child",
   "featured.role": "#featured .grid > div:nth-child(3) > p:last-child",
   "featured.goal": "#featured .grid > div:nth-child(6) > p:last-child",
-  "featured.github": '#featured a[href="#"]',
+  "featured.github": '#featured a[target="_blank"]',
   "projects.title": "#projects h2",
   "projects.myusafeDescription": "#projects .card-hover:nth-child(1) p.flex-1",
   "projects.fasttourDescription": "#projects .card-hover:nth-child(2) p.flex-1",
